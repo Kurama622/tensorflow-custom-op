@@ -31,7 +31,7 @@ public:
     Tensor* grad_input_tensor1 = NULL;
     Tensor* grad_input_tensor2 = NULL;
     OP_REQUIRES_OK(context, context->allocate_output(0, input_shape1, &grad_input_tensor1));
-    OP_REQUIRES_OK(context, context->allocate_output(0, input_shape2, &grad_input_tensor2));
+    OP_REQUIRES_OK(context, context->allocate_output(1, input_shape2, &grad_input_tensor2));
 
     auto grad   = grad_tensor.matrix<T>();
     auto input1 = input_tensor1.matrix<T>();
@@ -39,19 +39,20 @@ public:
     auto grad_input1 = grad_input_tensor1->matrix<T>();
     auto grad_input2 = grad_input_tensor2->matrix<T>();
 
+    // input1: NxK  input2: KxM
     int K = input_shape1.dim_size(1);
     int N = input_shape1.dim_size(0);
     int M = input_shape2.dim_size(1);
 
     // init
-    for(int j = 0; j < M; j++) {
-      for(int i = 0; i < K; i++) {
+    for(int j = 0; j < K; j++) {
+      for(int i = 0; i < N; i++) {
         grad_input1(i, j) = 0.0;
       }
     }
 
-    for(int j = 0; j < K; j++) {
-      for(int i = 0; i < N; i++) {
+    for(int j = 0; j < M; j++) {
+      for(int i = 0; i < K; i++) {
         grad_input2(i, j) = 0.0;
       }
     }
