@@ -6,7 +6,7 @@ a = tf.constant(
         [3, 4],
         [1, 1]])
 
-a = tf.constant(
+b = tf.constant(
         [[1., 2, 1],
         [3, 4, 1]])
 
