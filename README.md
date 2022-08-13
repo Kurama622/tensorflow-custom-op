@@ -2,6 +2,8 @@
 
 This is a matrix multiplication operation.
 
+You can find detailed principles and instructions [here](https://svegeta.gitee.io/tensorflow/tensorflow-custom-op-cpp/)
+
 ## USAGE
 ### No Gradients Involved
 
