@@ -2,3 +2,5 @@ TF_CFLAGS=( $(python -c 'import tensorflow as tf; print(" ".join(tf.sysconfig.ge
 TF_LFLAGS=( $(python -c 'import tensorflow as tf; print(" ".join(tf.sysconfig.get_link_flags()))') )
 
 g++ -std=c++11 -shared op_mymatmul.cc -o op_mymatmul.so -fPIC ${TF_CFLAGS[@]} ${TF_LFLAGS[@]} -O2
+
+g++ -std=c++11 -shared op_mymatmul_grad.cc -o op_mymatmul_grad.so -fPIC ${TF_CFLAGS[@]} ${TF_LFLAGS[@]} -O2
