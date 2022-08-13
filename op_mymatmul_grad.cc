@@ -23,7 +23,7 @@ public:
     const Tensor& grad_tensor   = context->input(0);
     const Tensor& input_tensor1 = context->input(1);
     const Tensor& input_tensor2 = context->input(2);
-    const TensorShape& grad_shape   = grad.shape();
+    const TensorShape& grad_shape   = grad_tensor.shape();
     const TensorShape& input_shape1 = input_tensor1.shape();
     const TensorShape& input_shape2 = input_tensor2.shape();
 
