@@ -2,7 +2,7 @@
 #include "tensorflow/core/framework/op.h"
 #include "tensorflow/core/framework/shape_inference.h"
 
-using namespace tensorflow
+using namespace tensorflow;
 
 
 REGISTER_OP("Mymatmul")
@@ -15,7 +15,7 @@ REGISTER_OP("Mymatmul")
                 auto M = c->Dim(c->input(1), 1);
                 c->set_output(0, c->MakeShape({N,M}));
                 return Status::OK();
-              })
+              });
 
 template<typename T>
 class MymatmulOp : public OpKernel {
